@@ -3,11 +3,17 @@ using namespace std;
 
 // Hàm kiểm tra số nguyên tố
 bool isPrime(int n) {
-    if (n <= 1) return false; // Số <= 1 không phải số nguyên tố
+    if (n <= 1) return false;
     for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) return false; // Nếu chia hết cho i thì không phải số nguyên tố
+        if (n % i == 0) return false;
     }
     return true;
+}
+
+// Hàm kiểm tra năm nhuận
+bool isLeapYear(int year) {
+    if (year <= 0) return false;
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
 // Hàm hiển thị menu
@@ -42,9 +48,22 @@ int main() {
             }
             break;
         }
-        case 2:
-            cout << "Chuc nang 2 chua duoc thuc hien." << endl;
+        case 2: {
+            int year;
+            cout << "Nhap mot nam: ";
+            cin >> year;
+            while (year <= 0) {
+                cout << "Vui long nhap nam duong lich (lon hon 0): ";
+                cin >> year;
+            }
+            if (isLeapYear(year)) {
+                cout << year << " la nam nhuan!" << endl;
+            }
+            else {
+                cout << year << " khong phai la nam nhuan!" << endl;
+            }
             break;
+        }
         case 0:
             cout << "Tam biet!" << endl;
             break;
